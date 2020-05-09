@@ -1,10 +1,10 @@
 # ---------------------------------------------------------------------------
-# ANÁLISE DE CONVERGENCIA EM SAIDAS DO BLUPF90 
+#           ANÁLISE DE CONVERGENCIA EM SAIDAS DO BLUPF90 
 #
-# Created at: 10-04-2015
-# Vinicius S. Junqueira and Delvan Silva
+# Created by: Thales de Lima Silva 
+# Colaborators: Vinicius S. Junqueira and Delvan Silva
 #
-# Modificated at: 16-04-2020
+# Updated at: 09-05-2020
 # Thales de Lima Silva 
 # ---------------------------------------------------------------------------
 

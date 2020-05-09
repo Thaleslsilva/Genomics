@@ -1,4 +1,14 @@
-# Biblioteca para analise de convergencia
+# ---------------------------------------------------------------------------
+#           ANÁLISE DE CONVERGENCIA EM SAIDAS DO BLUPF90 
+#         Biblioteca de funções para analise de convergencia
+#
+# Created at: 10-04-2015
+# Vinicius S. Junqueira and Delvan Silva
+#
+# Modificated at: 08-05-2020
+# Thales de Lima Silva 
+# ---------------------------------------------------------------------------
+
 
 # Obs: Caso tenha problemas com a acentuacao, consulte este link:
 # https://support.rstudio.com/hc/en-us/articles/200532197-Character-Encoding
