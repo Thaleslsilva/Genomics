@@ -1,4 +1,1 @@
-# Genomics
-
-## Pos-BLUPF90
-Script para análise de convergência em saídas geradas por programas da família BLUPF90
+![Capa](https://github.com/Thaleslsilva/Genomics/blob/master/Big%20Data%20e%20SG.png)
