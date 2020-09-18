@@ -40,7 +40,7 @@ dim(genodat)
 
 # Adicionando nomes às colunas do DataFrame
 colnames(genodat) <- c("SNP Name", "Sample ID", "Allele1 - Forward",
-                       "Allele2 - Forward",	"Allele1 - Top", "Allele2 - Top",
+                       "Allele2 - Forward", "Allele1 - Top", "Allele2 - Top",
                        "Allele1 - AB", "Allele2 - AB", "Log R Ratio",	
                        "B Allele Freq", "GC Score")
 View(genodat)
