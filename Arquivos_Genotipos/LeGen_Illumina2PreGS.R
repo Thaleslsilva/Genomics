@@ -52,4 +52,6 @@ write.table(genodat, file="FinalReport.txt", quote=F, row.names=F, col.names=T,
 ################################################################################
 #  DEVE-SE COPIAR O CABEÇALHO DE UMA DOS ARQUIVOS DO GenomeStudio E COLAR NO   #
 #  ARQUIVO "FinalReport.txt" ANTES DE USÁ-LO COMO INPUT NO ILLUMINA2PREGS!!!   #
+#                                                                              #  
+#  Ref.: nce.ads.uga.edu/wiki/doku.php?id=readme.illumina2pregs                #
 ################################################################################
