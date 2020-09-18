@@ -1,10 +1,10 @@
 ################################################################################ 
 #
-#  AN¡LISE DE DADOS GEN‘MICOS
+#  AN√ÅLISE DE DADOS GEN√îMICOS
 #
-#  Leitura de genÛtipos com o programa illumina2preGS
+#  Leitura de gen√≥tipos com o programa illumina2preGS
 #
-#  AtualizaÁ„o: 18/09/2020                          Dev.: Thales de Lima Silva
+#  Atualiza√ß√£o: 18/09/2020                          Dev.: Thales de Lima Silva
 #
 ################################################################################ 
 
@@ -12,16 +12,16 @@
 # 1. PREPARANDO O AMBIENTE #####################################################
 # Limpando workspace
 rm(list=ls()) 
-# N„o deixar o R converter automaticamente caracter em fator
+# N√£o deixar o R converter automaticamente caracter em fator
 options(stringsAsFactors=F) 
 
-# Definindo o diretÛrio onde est„o os arquivos de genÛtipos gerados pelo 
+# Definindo o diret√≥rio onde est√£o os arquivos de gen√≥tipos gerados pelo 
 # software GenomeStudio
 setwd("C:/Users/Thales/Google Drive/UNESP_GMA/AnlDadosGen/aula1/ex2")
 
 
 # 2. CARREGANDO OS DADOS #######################################################
-# Criando objeto com o nome dos arquivos que ser„o lidos. Arquivos iniciando com
+# Criando objeto com o nome dos arquivos que ser√£o lidos. Arquivos iniciando com
 # a letra "F" (FinalReport"i".txt)
 filenames <- dir(pattern="^[F]") 
 length(filenames)
@@ -35,23 +35,23 @@ for (k in filenames){
   genodat<- rbind(genodat, report)
 }
 
-# Conferir a dimens„o do objeto com os genÛtipos
+# Conferir a dimens√£o do objeto com os gen√≥tipos
 dim(genodat)  
 
-# Adicionando nomes ‡s colunas do DataFrame
+# Adicionando nomes √†s colunas do DataFrame
 colnames(genodat) <- c("SNP Name", "Sample ID", "Allele1 - Forward",
-                       "Allele2 - Forward",	"Allele1 - Top",	"Allele2 - Top",
+                       "Allele2 - Forward",	"Allele1 - Top", "Allele2 - Top",
                        "Allele1 - AB", "Allele2 - AB", "Log R Ratio",	
                        "B Allele Freq", "GC Score")
 View(genodat)
 
-# Salvando objeto (genÛtipos) que ser· utilizado nos prÛximos passos
+# Salvando objeto (gen√≥tipos) que ser√° utilizado nos pr√≥ximos passos
 write.table(genodat, file="FinalReport.txt", quote=F, row.names=F, col.names=T, 
             sep="\t")
 
 ################################################################################
-#  DEVE-SE COPIAR O CABE«ALHO DE UMA DOS ARQUIVOS DO GenomeStudio E COLAR NO   #
-#  ARQUIVO "FinalReport.txt" ANTES DE US¡-LO COMO INPUT NO ILLUMINA2PREGS!!!   #
+#  DEVE-SE COPIAR O CABE√áALHO DE UMA DOS ARQUIVOS DO GenomeStudio E COLAR NO   #
+#  ARQUIVO "FinalReport.txt" ANTES DE US√Å-LO COMO INPUT NO ILLUMINA2PREGS!!!   #
 #                                                                              #  
 #  Ref.: nce.ads.uga.edu/wiki/doku.php?id=readme.illumina2pregs                #
 ################################################################################
