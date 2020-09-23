@@ -1,10 +1,10 @@
 ################################################################################ 
 #
-#  AN¡LISE DE DADOS GEN‘MICOS 
+#  AN√ÅLISE DE DADOS GEN√îMICOS 
 #
-#  Leitura de genÛtipos com a funÁ„o read.snps.long do pacote snpStats
+#  Leitura de gen√≥tipos com a fun√ß√£o read.snps.long do pacote snpStats
 #
-#  AtualizaÁ„o: 17/09/2020                          Dev.: Thales de Lima Silva
+#  Atualiza√ß√£o: 17/09/2020                          Dev.: Thales de Lima Silva
 #
 ################################################################################ 
 
@@ -12,7 +12,7 @@
 # 1. PREPARANDO O AMBIENTE #####################################################
 # Limpando workspace
 rm(list=ls()) 
-# N„o deixar o R converter automaticamente caracter em fator
+# N√£o deixar o R converter automaticamente caracter em fator
 options(stringsAsFactors=F) 
 
 # Instalando o pacote snpStats
@@ -23,13 +23,13 @@ BiocManager::install("snpStats")
 # Carregando o pacote snpStats
 library(snpStats)
 
-# Definindo o diretÛrio onde est„o os arquivos de genÛtipos gerados pelo 
+# Definindo o diret√≥rio onde est√£o os arquivos de gen√≥tipos gerados pelo 
 # software GenomeStudio
 setwd("C:/Users/Thales/Google Drive/UNESP_GMA/AnlDadosGen/aula1/ex1")
 
 
 # 2. CARREGANDO OS DADOS #######################################################
-# Criando objeto com o nome dos arquivos que ser„o lidos. Arquivos iniciando com
+# Criando objeto com o nome dos arquivos que ser√£o lidos. Arquivos iniciando com
 # a letra "F" (FinalReport"i".txt)
 filenames <- dir(pattern="^[F]") 
 length(filenames)
@@ -43,7 +43,7 @@ snpids <- snpmap$Name
 head(snpids)
 
 
-# 3. LIMPEZA E PR…-PROCESSAMENTO ###############################################
+# 3. LIMPEZA E PR√â-PROCESSAMENTO ###############################################
 # Lendo sample IDs dos proprios arquivos de genotipos (segunda coluna)
 animids <- NULL
 count   <- 0
@@ -53,8 +53,8 @@ for (k in filenames){count <- count+1
 }
 animids
 
-# Leitura de genÛtipos usando a funÁ„o do snpStats (read.snps.long)
-# vide referÍncia snpStats_manual.pdf
+# Leitura de gen√≥tipos usando a fun√ß√£o do snpStats (read.snps.long)
+# vide refer√™ncia snpStats_manual.pdf
 genodat <- read.snps.long(file=filenames,
                           sample.id=animids,
                           snp.id=snpids,
@@ -69,16 +69,16 @@ genodat <- read.snps.long(file=filenames,
                           in.order=FALSE,
                           every=10000)
 
-# Conferir a dimens„o do objeto com os genÛtipos
+# Conferir a dimens√£o do objeto com os gen√≥tipos
 dim(genodat)  
 
-# Conferir como s„o salvos os nomes das linhas e das colunas
+# Conferir como s√£o salvos os nomes das linhas e das colunas
 head(rownames(genodat))
 head(colnames(genodat))
 
 
 # 4. SALVANDO OS OBJETOS GERADOS A PARTIR DOS DADOS ############################
-# Salvando objeto (genÛtipos) que ser· utilizado nos prÛximos passos
+# Salvando objeto (gen√≥tipos) que ser√° utilizado nos pr√≥ximos passos
 save(genodat,file="genodat.Rdata")
 
 # Salvando snpmatrix no formato texto
