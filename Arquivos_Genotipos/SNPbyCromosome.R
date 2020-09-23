@@ -1,10 +1,10 @@
 ################################################################################ 
 #
-#  AN¡LISE DE DADOS GEN‘MICOS 
+#  AN√ÅLISE DE DADOS GEN√îMICOS 
 #
-#  Comparar a quantidade de SNP's por cromossomo em diferentes painÈis
+#  Comparar a quantidade de SNP's por cromossomo em diferentes pain√©is
 #
-#  AtualizaÁ„o: 23/09/2020                          Dev.: Thales de Lima Silva
+#  Atualiza√ß√£o: 23/09/2020                          Dev.: Thales de Lima Silva
 #
 ################################################################################
 
@@ -12,7 +12,7 @@
 # 1. PREPARANDO O AMBIENTE #####################################################
 # Limpando workspace
 rm(list=ls()) 
-# N„o deixar o R converter automaticamente caracter em fator
+# N√£o deixar o R converter automaticamente caracter em fator
 options(stringsAsFactors=F) 
 
 # Carregando pacotes
@@ -20,12 +20,12 @@ library(dplyr)
 library(stringr)
 library(gtools)
 
-# Definindo o diretÛrio onde est„o os arquivos
+# Definindo o diret√≥rio onde est√£o os arquivos
 setwd("C:/Users/Thales/Google Drive/UNESP_GMA/AnlDadosGen/aula1/ex3")
 
 
 # 2. CARREGANDO OS DADOS #######################################################
-# Criando objeto com o nome dos arquivos que ser„o lidos, iniciando com "SNP"
+# Criando objeto com o nome dos arquivos que ser√£o lidos, iniciando com "SNP"
 filenames <- dir(pattern = "^[SNP]") 
 length(filenames)
 head(filenames)
@@ -46,7 +46,7 @@ for (k in filenames){
 
 str(table)
 
-# Ordenando tabela pela identificaÁ„o do cromossomo
+# Ordenando tabela pela identifica√ß√£o do cromossomo
 ordena <- mixedorder(table$Chr)
 table <- table[ordena,]
 View(table)
