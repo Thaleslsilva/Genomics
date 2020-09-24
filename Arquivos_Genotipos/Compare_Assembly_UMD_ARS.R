@@ -1,12 +1,12 @@
 ################################################################################ 
 #
-#  AN¡LISE DE DADOS GEN‘MICOS 
+#  AN√ÅLISE DE DADOS GEN√îMICOS 
 #
-#  Calcular o n˙mero de SNPs do painel HD que tiveram a posiÁ„o alterada para 
-#  outro cromossomo ao contrastar a posiÁ„o das referÍncias/assemblies UMD3.1 
+#  Calcular o n√∫mero de SNPs do painel HD que tiveram a posi√ß√£o alterada para 
+#  outro cromossomo ao contrastar a posi√ß√£o das refer√™ncias/assemblies UMD3.1 
 #  e ARS-UCD1.2
 #
-#  AtualizaÁ„o: 24/09/2020                          Dev.: Thales de Lima Silva
+#  Atualiza√ß√£o: 24/09/2020                          Dev.: Thales de Lima Silva
 #
 ################################################################################
 
@@ -14,19 +14,19 @@
 # 1. PREPARANDO O AMBIENTE #####################################################
 # Limpando workspace
 rm(list=ls()) 
-# N„o deixar o R converter automaticamente caracter em fator
+# N√£o deixar o R converter automaticamente caracter em fator
 options(stringsAsFactors=F) 
 
 # Carregando pacotes
 library(gtools)
 library(ggplot2)
 
-# Definindo o diretÛrio onde est„o os arquivos
+# Definindo o diret√≥rio onde est√£o os arquivos
 setwd("C:/Users/Thales/Google Drive/UNESP_GMA/AnlDadosGen/aula1/ex4")
 
 
 # 2. CARREGANDO E VISUALIZANDO OS DADOS ########################################
-# Criando objeto com o nome dos arquivos que ser„o lidos
+# Criando objeto com o nome dos arquivos que ser√£o lidos
 filenames <- dir(pattern = "HD") # arquivos iniciando com "SNP"
 head(filenames)
 
@@ -39,7 +39,7 @@ map1 <- read.table(filenames[1], header = F, sep = "\t",
 str(map1)
 
 
-# 3. EDI«√O E PR…-PROCESSAMENTO ################################################
+# 3. EDI√á√ÉO E PR√â-PROCESSAMENTO ################################################
 
 ## 9913_MAP_marker_names_180910.README
 ## The chromosomes are coded as integers according to the PLINK specification.
@@ -58,7 +58,7 @@ names(map1.1)[1:3] <- c("Chr_ARS", "Name", "Pos_ARS")
 map1.1$Chr_ARS = as.character(as.numeric(map1.1$Chr_ARS))
 str(map1.1)
 
-### Alterando a identificaÁ„o dos cromossomos para parear como o mapa 2.1
+### Alterando a identifica√ß√£o dos cromossomos para parear como o mapa 2.1
 table(map2.1$Chr_UMD)
 table(map1.1$Chr_ARS)
 map1.1$Chr_ARS[map1.1$Chr_ARS == "30"] <- "X"
@@ -68,7 +68,7 @@ map1.1$Chr_ARS[map1.1$Chr_ARS == "33"] <- "MT"
 
 
 # 4. COMPARAR MAPAS/ASSEMBLIES #################################################
-# Unindo os dados em uma ˙nica tabela
+# Unindo os dados em uma √∫nica tabela
 table_maps <- merge(map1.1, map2.1, by = "Name", all = T)
 View(table_maps)
 
@@ -85,12 +85,12 @@ dif_Chr[order(dif_Chr$Freq),]
 sum(dif_Chr$Freq)
 
 # RESPOSTA: #####################################################################
-# 6.477 È o n˙mero de SNP's do painel HD que tiveram a posiÁ„o alterada para    #
-# outro cromossomo, ao contrastar a posiÁ„o das referÍncias UMD3.1              #
+# 6.477 √© o n√∫mero de SNP's do painel HD que tiveram a posi√ß√£o alterada para    #
+# outro cromossomo, ao contrastar a posi√ß√£o das refer√™ncias UMD3.1              #
 # (SNP_Map_HD.txt) e ARS- UCD1.2 (9913_ARS1.2_777962_HD_marker_name_180910.map) #
 #################################################################################
 
-## 4.2 SNPs que n„o mudaram de cromossomo ######################################
+## 4.2 SNPs que n√£o mudaram de cromossomo ######################################
 eq_Chr <- as.data.frame(table(paste(table_maps$Chr_ARS[-dif],
                                     table_maps$Chr_UMD[-dif], sep = "_")))
 eq_Chr$Perc <- eq_Chr$Freq/table(map2.1$Chr_UMD)*100
@@ -98,12 +98,12 @@ eq_Chr
 sum(eq_Chr$Freq)
 
 # RESPOSTA: #####################################################################
-# 771.485 SNP's do painel HD n„o tiveram a posiÁ„o alterada para outro          #
-# cromossomo, ao contrastar a posiÁ„o das referÍncias UMD3.1 (SNP_Map_HD.txt) e #
+# 771.485 SNP's do painel HD n√£o tiveram a posi√ß√£o alterada para outro          #
+# cromossomo, ao contrastar a posi√ß√£o das refer√™ncias UMD3.1 (SNP_Map_HD.txt) e #
 # ARS- UCD1.2 (9913_ARS1.2_777962_HD_marker_name_180910.map)                    #
 #################################################################################
 
-## 4.3 MudanÁas de posiÁ„o dentro de cromossomo ################################
+## 4.3 Mudan√ßas de posi√ß√£o dentro de cromossomo ################################
 difMb <- (table_maps$Pos_ARS[-dif] - abs(table_maps$Pos_UMD[-dif]))/1000000
 summary(difMb)
 boxplot(difMb)
@@ -122,7 +122,7 @@ for (var in mixedsort(unique(maps2$Chr_UMD[maps2$Chr_UMD != "0"]))) {
                y = "ARS position (Mb)"))
 }
 
-# 5. SALVANDO TABELA COM SNPS QUE TIVERAM A POSI«√O ALTERADA  ##################
+# 5. SALVANDO TABELA COM SNPS QUE TIVERAM A POSI√á√ÉO ALTERADA  ##################
 snp_pos_altr <- table_maps[table_maps$Chr_ARS != table_maps$Chr_UMD, ]
 
 write.table(snp_pos_altr, file = "SNPs_alterados.txt", quote = F, row.names = F,
