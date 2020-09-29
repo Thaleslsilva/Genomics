@@ -6,5 +6,5 @@ Conteúdo prático da disciplina Análise de Dados Genômicos do Programa de Pó
 
 # Scripts disponíveis
 
-* ## R Script 1 - .R
-    * Fazer a leitura dos arquivos de genótipos de bovinos da raça Angus utilizando o snpStats
+* ## R Script 1 - QC_genotipos.R
+    * Fazer o controle de qualidade de SNPs e amostras incluindo SNPs correlacionados e documentar a quantidade de SNPs excluídos por critérios de controle de qualidade
