@@ -7,7 +7,7 @@ Conteúdo prático da disciplina Análise de Dados Genômicos do Programa de Pó
 # Material disponível
 
 * ## R Script - ReadGenotypes.R
-    * Faz a leitura dos arquivos de genótipos de bovinos da raça Angus utilizando o snpStats
+    * Faz a leitura dos arquivos de genótipos de bovinos utilizando o pacote snpStats
     
 * ## R Script - ReadGen_Illumina2PreGS.R
     * Prepara arquivo de texto com genótipos de bovinos para leitura utilizando o software illumina2preGS
