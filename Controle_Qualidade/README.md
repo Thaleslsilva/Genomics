@@ -13,7 +13,7 @@ Conteúdo prático da disciplina Análise de Dados Genômicos do Programa de Pó
     * Script de funções auxiliares ao QC_genotipos.R
     
 * ## R Script - QC_genotipos_qcf90.R
-    * Faz o Preparação de genótipos e execução do controle de qualidade utilizando o software QCF90 (Yutaka Masuda)
+    * Faz o preparação dos genótipos e executa o controle de qualidade utilizando o software QCF90 (Yutaka Masuda)
 
 * ## Arquivos de Dados - genodat.Rdata e genodat2.Rdata
     * Objetos em R com exemplos de dados gentípicos para realização do controle de qualidade
