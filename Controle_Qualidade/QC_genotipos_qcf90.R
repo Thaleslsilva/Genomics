@@ -1,12 +1,12 @@
 ################################################################################ 
 #
-#  AN¡LISE DE DADOS GEN‘MICOS 
+#  AN√ÅLISE DE DADOS GEN√îMICOS 
 #
-#  PreparaÁ„o de genÛtipos para controle de qualidade utilizando o software
-#  QCF90
+#  Prepara√ß√£o de gen√≥tipos e execu√ß√£o do controle de qualidade utilizando o 
+#  software QCF90 (Yutaka Masuda)
 #
-#  Vers„o 1.0                                       Dev.: Roberto Carvalheiro
-#  AtualizaÁ„o: 05/10/2020                        Atual.: Thales de Lima Silva
+#  Vers√£o 1.0                                       Dev.: Roberto Carvalheiro
+#  Atualiza√ß√£o: 05/10/2020                        Atual.: Thales de Lima Silva
 #
 ################################################################################ 
 
@@ -14,32 +14,32 @@
 # 1. PREPARANDO O AMBIENTE #####################################################
 # Limpando workspace
 rm(list=ls()) 
-# N„o deixar o R converter automaticamente caracter em fator
+# N√£o deixar o R converter automaticamente caracter em fator
 options(stringsAsFactors=F) 
 
 # Carregando o pacote snpStats
 library(snpStats)
 
-# Definindo o diretÛrio onde est„o os arquivos de genÛtipos gerados pelo 
+# Definindo o diret√≥rio onde est√£o os arquivos de gen√≥tipos gerados pelo 
 # software GenomeStudio
 setwd("C:/Users/Thales/Google Drive/UNESP_GMA/AnlDadosGen/aula2/ex2")
 
 
 # 2. CARREGANDO OS DADOS #######################################################
-# Objeto R salvo da leitura dos arquivos de genÛtipos     
+# Objeto R salvo da leitura dos arquivos de gen√≥tipos     
 load("genodat.Rdata")   
 dim(genodat)
 
-# Objeto adicional com outros genÛtipos
+# Objeto adicional com outros gen√≥tipos
 load("genodat2.Rdata")   
 dim(genodat2)
 
-# Concatenando genÛtipos em um ˙nico objeto - ***importante***: os objetos devem
+# Concatenando gen√≥tipos em um √∫nico objeto - ***importante***: os objetos devem
 # ter os mesmos SNPs e as colunas igualmente ordenadas
 genotipo <- rbind(genodat, genodat2)
 dim(genotipo)
 
-# Removendo objetos anteriores para liberar memÛria
+# Removendo objetos anteriores para liberar mem√≥ria
 rm(genodat, genodat2)
 
 # Lendo "SNP map"
@@ -51,25 +51,25 @@ head(mapa)
 table(mapa$Chromosome)
 
 
-# 3. LIMPEZA E PR…-PROCESSAMENTO ###############################################
+# 3. LIMPEZA E PR√â-PROCESSAMENTO ###############################################
 # Filtrando apenas autossomos
 mapa <- subset(mapa, as.numeric(Chromosome) >= 1)
 table(mapa$Chromosome)
 
-# Ordenando por cromossomo e posiÁ„o
+# Ordenando por cromossomo e posi√ß√£o
 ordena <- order(as.numeric(mapa$Chromosome), mapa$Position) 
 mapa <- mapa[ordena, ]
 head(mapa)
 tail(mapa)
 
-# Removendo SNPs com mesma posiÁ„o
+# Removendo SNPs com mesma posi√ß√£o
 chrpos <- paste(mapa$Chromosome, mapa$Position, sep = "_")
 ## Listando os duplicados
 mapa[duplicated(chrpos)|duplicated(chrpos, fromLast=TRUE), ] 
 dupli <- which(duplicated(chrpos))
 mapa  <- mapa[-dupli, ]
 
-# Filtrando SNPs nos genÛtipos
+# Filtrando SNPs nos gen√≥tipos
 dim(genotipo)
 nrow(mapa)
 head(colnames(genotipo))
@@ -87,7 +87,13 @@ write.SnpMatrix(genotipo, file = "geno_qcf90.txt", quote = F, row.names = T,
 
 
 # 5. FAZENDO O CONTROLE DE QUALIDADE NO SOFTWARE QCF90 #########################
-# QCF90 --dry-run (Verifica inconsistÍncias na execuÁ„o do QC)
+
+################################################################################
+# Nota: Os execut√°veis do qcf90 para todos os sistemas operacionais podem ser  #
+# obtidos em: http://nce.ads.uga.edu/html/projects/programs/                   #
+################################################################################
+
+# QCF90 --dry-run (Verifica inconsist√™ncias na execu√ß√£o do QC)
 command1 <- "qcf90 --snpfile geno_qcf90.txt --crm 0.90 --cra 0.97 --maf 0.02 --dry-run"
 system(command1)
 
