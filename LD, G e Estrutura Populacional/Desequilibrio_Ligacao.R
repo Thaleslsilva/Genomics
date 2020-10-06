@@ -1,14 +1,14 @@
 ################################################################################ 
 #
-#  AN¡LISE DE DADOS GEN‘MICOS 
+#  AN√ÅLISE DE DADOS GEN√îMICOS 
 #
-#  Comparar o DesequilÌbrio de LigaÁ„o (LD) local de duas regiıes do genoma que 
-#  tiveram alteraÁ„o expressiva de SNPs comparando os mapas (assemblies) de 
-#  referÍncia UMD3.1 e ARS-UCD1.2
-#  As duas regiıes s„o: Chr.21:59-61Mb e Chr.27:0-2Mb
+#  Comparar o Desequil√≠brio de Liga√ß√£o (LD) local de duas regi√µes do genoma que 
+#  tiveram altera√ß√£o expressiva de SNPs comparando os mapas (assemblies) de 
+#  refer√™ncia UMD3.1 e ARS-UCD1.2
+#  As duas regi√µes s√£o: Chr.21:59-61Mb e Chr.27:0-2Mb
 #
-#  Vers„o 1.0                                       Dev.: Roberto Carvalheiro
-#  AtualizaÁ„o: 06/10/2020                        Atual.: Thales de Lima Silva
+#  Vers√£o 1.0                                       Dev.: Roberto Carvalheiro
+#  Atualiza√ß√£o: 06/10/2020                        Atual.: Thales de Lima Silva
 #
 ################################################################################
 
@@ -16,7 +16,7 @@
 # 1. PREPARANDO O AMBIENTE #####################################################
 # Limpando workspace
 rm(list=ls()) 
-# N„o deixar o R converter automaticamente caracter em fator
+# N√£o deixar o R converter automaticamente caracter em fator
 options(stringsAsFactors=F) 
 
 ## Para instalar o pacote "LDHeatmap" baixar e instalar o Rtools 4.0: 
@@ -25,24 +25,24 @@ options(stringsAsFactors=F)
 ## Instalar o devtools
 ## install.packages("devtools")
 
-## Instalar a ˙ltima vers„o do LDheatmap a partir do GitHub 
+## Instalar a √∫ltima vers√£o do LDheatmap a partir do GitHub 
 ## devtools::install_github("SFUStatgen/LDheatmap")
 
-## Caso haja alguma incompatibilidade entre a vers„o do R instalada e a vers„o
-## do LDHeatmap disponÌvel no GitHub, versıes anteriores deste pacote podem ser
-## encontradas na p·gina do archive do CRAN:
+## Caso haja alguma incompatibilidade entre a vers√£o do R instalada e a vers√£o
+## do LDHeatmap dispon√≠vel no GitHub, vers√µes anteriores deste pacote podem ser
+## encontradas na p√°gina do archive do CRAN:
 ## https://cran.r-project.org/src/contrib/Archive/LDheatmap/
 
 # Carregando os pacotes
 library(LDheatmap)
 library(snpStats)
 
-# Definindo o diretÛrio de trabalho
+# Definindo o diret√≥rio de trabalho
 setwd("C:/Users/Thales/Google Drive/UNESP_GMA/AnlDadosGen/aula3/Ex1")
 
 
 # 2. CARREGANDO OS DADOS #######################################################
-# Leitura dos genÛtipos
+# Leitura dos gen√≥tipos
 load("genoHDaula3.Rdata")
 dim(genoHDaula3)
 
@@ -52,8 +52,8 @@ str(mapa)
 head(mapa)
 
 
-# 3. LIMPEZA E PR…-PROCESSAMENTO ###############################################
-# Filtranto SNPs do arquivo de genÛtipos no mapa
+# 3. LIMPEZA E PR√â-PROCESSAMENTO ###############################################
+# Filtranto SNPs do arquivo de gen√≥tipos no mapa
 aux    <- match(colnames(genoHDaula3), mapa$snpname)
 which(is.na(aux))
 mapaG  <- mapa[aux, 1:5]
@@ -66,7 +66,7 @@ snplist2<-which(mapaG$chrA=="21" & mapaG$posA/1000000>=59 & mapaG$posA/1000000<=
 snplist3<-which(mapaG$chrU=="27" & mapaG$posU/1000000>=0 & mapaG$posU/1000000<=2)
 snplist4<-which(mapaG$chrA=="27" & mapaG$posA/1000000>=0 & mapaG$posA/1000000<=2)
 
-# Criando vari·vel auxiliar no mapa para montar os heatmaps 
+# Criando vari√°vel auxiliar no mapa para montar os heatmaps 
 mapaG$w <- 0
 mapaG$w[snplist1] <- 1
 mapaG$w[snplist2] <- 2
@@ -75,11 +75,11 @@ mapaG$w[snplist4] <- 4
 table(mapaG$w)
 
 
-# 4. GERANDO GR¡FICOS COM LD NAS ANELAS DE INTERESSE ###########################
+# 4. GERANDO GR√ÅFICOS COM LD NAS ANELAS DE INTERESSE ###########################
 
 ################################################################################
-# Comparando o desequilÌbrio de ligaÁ„o na janela do cromossomo 21 nas duas    #
-# referÍncias                                                                  #
+# Comparando o desequil√≠brio de liga√ß√£o na janela do cromossomo 21 nas duas    #
+# refer√™ncias                                                                  #
 ################################################################################
 # LD janela 1: Chr.21:59-61Mb (UMD3.1) 
 LDheatmap(genoHDaula3[, mapaG$w==1], mapaG$posU[mapaG$w == 1], flip = TRUE, 
@@ -104,8 +104,8 @@ LDheatmap(genoHDaula3[, mapaG$w==2], mapaG$posA[mapaG$w == 2], flip = TRUE,
 
 
 ################################################################################
-# Comparando o desequilÌbrio de ligaÁ„o na janela do cromossomo 27 nas duas    #
-# referÍncias                                                                  #
+# Comparando o desequil√≠brio de liga√ß√£o na janela do cromossomo 27 nas duas    #
+# refer√™ncias                                                                  #
 ################################################################################
 # LD janela 3: Chr.27:0-2Mb (UMD3.1) 
 LDheatmap(genoHDaula3[, mapaG$w == 3], mapaG$posU[mapaG$w == 3], flip = TRUE,
