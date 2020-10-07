@@ -1,14 +1,14 @@
 ################################################################################ 
 #
-#  AN¡LISE DE DADOS GEN‘MICOS 
+#  AN√ÅLISE DE DADOS GEN√îMICOS 
 #
-#  Comparando diferentes mÈtodos de c·lculo da matriz de parentesco genÙmico (G)
-#  Compara as matrizes G em relaÁ„o aos elementos da diagonal e os elementos 
-#  fora da diagonal. Faz a comparaÁ„o com base em estatÌsticas descritivas 
-#  (mÈdia, mÌnimo, m·ximo, ...) e correlaÁ„o.
+#  Comparando diferentes m√©todos de c√°lculo da matriz de parentesco gen√¥mico (G)
+#  Compara as matrizes G em rela√ß√£o aos elementos da diagonal e os elementos 
+#  fora da diagonal. Faz a compara√ß√£o com base em estat√≠sticas descritivas 
+#  (m√©dia, m√≠nimo, m√°ximo, ...) e correla√ß√£o.
 #
-#  Vers„o 1.0                                       Dev.: Roberto Carvalheiro
-#  AtualizaÁ„o: 07/10/2020                        Atual.: Thales de Lima Silva
+#  Vers√£o 1.0                                       Dev.: Roberto Carvalheiro
+#  Atualiza√ß√£o: 07/10/2020                        Atual.: Thales de Lima Silva
 #
 ################################################################################ 
 
@@ -16,37 +16,37 @@
 # 1. PREPARANDO O AMBIENTE #####################################################
 # Limpando workspace
 rm(list=ls()) 
-# N„o deixar o R converter automaticamente caracter em fator
+# N√£o deixar o R converter automaticamente caracter em fator
 options(stringsAsFactors=F) 
 
 # Carregando o pacote snpStats
 library(snpStats)
 
-# Definindo o diretÛrio onde est„o os arquivos de genÛtipos gerados pelo 
+# Definindo o diret√≥rio onde est√£o os arquivos de gen√≥tipos gerados pelo 
 # software GenomeStudio
 setwd("C:/Users/Thales/Google Drive/UNESP_GMA/AnlDadosGen/aula3/Ex2")
 
 
 # 2. CARREGANDO OS DADOS #######################################################
-# Objeto R salvo da leitura dos arquivos de genÛtipos
+# Objeto R salvo da leitura dos arquivos de gen√≥tipos
 load("geno1.Rdata")
 dim(geno1)
 
 
-# 3. PR…-PROCESSAMENTO E AN¡LISE EXPLORAT”RIA ##################################
+# 3. PR√â-PROCESSAMENTO E AN√ÅLISE EXPLORAT√ìRIA ##################################
 # M: matriz de genotipos (n alelos B)
 M <- as(geno1, 'numeric')
 M[1:10, 1:5]
 
 snpstat <- col.summary(geno1)
 head(snpstat)
-# RAF È a frequÍncia do alelo B
+# RAF √© a frequ√™ncia do alelo B
 fB <- snpstat$RAF 
 
 
-# 4. CALCULADO A MATRIZ G POR DIFERENTES M…TODOS ###############################
+# 4. CALCULADO A MATRIZ G POR DIFERENTES M√âTODOS ###############################
 
-## 4.1. Matriz G pelo MÈtodo 1 VanRaden 
+## 4.1. Matriz G pelo M√©todo 1 VanRaden 
 P <- 2 * rep(1, nrow(M)) %*% t(fB)
 Z <- M - P
 sum2pq <- sum(2 * fB * (1 - fB))
@@ -61,16 +61,16 @@ Glist <- na.omit(data.frame(as.table(Glist)))
 colnames(Glist) <- c("ANi", "ANj", "Gij")
 head(Glist)
 
-# EstatÌsticas da diagonal
+# Estat√≠sticas da diagonal
 summary(Glist$Gij[Glist$ANi == Glist$ANj])
 plot(density(Glist$Gij[Glist$ANi == Glist$ANj]))
 
-# EstatÌsticas off-diagonal
+# Estat√≠sticas off-diagonal
 summary(Glist$Gij[Glist$ANi != Glist$ANj])
 plot(density(Glist$Gij[Glist$ANi != Glist$ANj]))
 
 
-## 4.2. Matriz G pelo MÈtodo 2 VanRaden (G2)
+## 4.2. Matriz G pelo M√©todo 2 VanRaden (G2)
 D  <- 1 / (ncol(M) * (2 * fB * (1 - fB)))
 G2 <- Z %*% (D * t(Z))
 
@@ -122,7 +122,7 @@ plot(Glist$Gij[Glist$ANi != Glist$ANj], GNlist$GNij[GNlist$ANi != GNlist$ANj])
 
 ################################################################################
 #                                                                              #
-# REFER NCIAS BIBLIOGR¡FICAS:                                                  #
+# REFER√äNCIAS BIBLIOGR√ÅFICAS:                                                  #
 #                                                                              #
 # VanRaden PM. Genomic measures of relationship and inbreeding. Interbull Bull # 
 # 2007, 37:33-36.                                                              #
@@ -134,13 +134,13 @@ plot(Glist$Gij[Glist$ANi != Glist$ANj], GNlist$GNij[GNlist$ANi != GNlist$ANj])
 # single-step analysis using phenotypic, pedigree and genomic information.     #
 # Genetics Selection Evolution 2011, 43:1.                                     #
 #                                                                              #
-# StrandÈn I, Christensen OF. Allele coding in genomic evaluation. Genetics    #
+# Strand√©n I, Christensen OF. Allele coding in genomic evaluation. Genetics    #
 # Selection Evolution 2011, 43:25.                                             #
 #                                                                              #
 # Tier B, Meyer K, Ferdosi MH. Which genomic relationship matrix? Proc. Assoc. #
 # Advmt. Breed. Genet. 2015, 21: 461-464.                                      #
 #                                                                              #
-# Toro MA, GarcÌa-CortÈs LA, Legarra A. A note on the rationale for estimating #
+# Toro MA, Garc√≠a-Cort√©s LA, Legarra A. A note on the rationale for estimating #
 # genealogical coancestry from molecular markers. Genetics Selection Evolution #
 # 2011, 43:27.                                                                 #
 #                                                                              #
