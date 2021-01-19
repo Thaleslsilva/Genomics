@@ -14,10 +14,10 @@
 # PREPARANDO O AMBIENTE ########################################################
 rm(list=ls())
 
-setwd("C:/Users/Thales/Google Drive/UNESP_GMA/ADGen_2020/aula4-Modelagem_Estatistica_Marcadores/lab1")
+setwd("C:/Users/ADGen_2020/Modelagem_Estatistica_Marcadores")
 
 # Ler arquivo e conferir variáveis
-dados<-read.table("aula4.dat",header=T)
+dados<-read.table("Data.dat",header=T)
 str(dados)
 View(dados)
 table(dados$geno)
