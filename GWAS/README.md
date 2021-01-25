@@ -11,6 +11,7 @@ Conteúdo prático da disciplina Análise de Dados Genômicos do Programa de Pó
       
 * ## R Script - posGS3.R
     * Gera Trace plots e Manhattan plots
+    * R Scripts auxiliares
       - manhattan_function_BF.R: função auxiliar para gráfico Bayes Factor 
       - manhattan_function_PIP.R: função auxiliar para gráfico posterior inclusion probability
       - manhattan_function_SOL.R: função auxiliar para gráfico de efeitos dos SNPs
